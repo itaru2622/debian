@@ -21,7 +21,8 @@ env:
   #REGISTRY: docker.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-
+  # tag as latest:
+  TAG_LATEST: buster
 
 jobs:
   build:
@@ -57,7 +58,7 @@ jobs:
             type=schedule
             type=ref,event=branch
             type=semver,pattern={{raw}}
-            type=raw,value=latest,enable=${{ endsWith(github.ref, 'refs/heads/master') }}
+            type=raw,value=${{env.TAG_LATEST}},enable=${{ endsWith(github.ref, 'refs/heads/master') }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
