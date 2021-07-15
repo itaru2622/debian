@@ -17,8 +17,8 @@ on:
 
 env:
   # Use docker.io for Docker Hub if empty
-  REGISTRY: ghcr.io
-  #REGISTRY: docker.io
+  #REGISTRY: ghcr.io
+  REGISTRY: docker.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
   # tag as latest:
@@ -44,8 +44,8 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-#         password: ${{ secrets.DOCKERHUB_TOKEN }}
+#         password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
@@ -55,8 +55,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=schedule
-            type=ref,event=branch
+            type=schedule,pattern=${{env.TAG_LATEST}}
+            type=ref,event=branch,enable=${{ !endsWith(github.ref, 'refs/heads/master') }}
             type=semver,pattern={{raw}}
             type=raw,value=${{env.TAG_LATEST}},enable=${{ endsWith(github.ref, 'refs/heads/master') }}
 
