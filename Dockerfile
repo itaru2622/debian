@@ -21,6 +21,8 @@ RUN apt-get update; apt-get install -y \
                git make jq \
                python3-pip python3-cryptography
 
+RUN mkdir -p /etc/bash_completion.d; kubectl completion bash > /etc/bash_completion.d/kubectl
+
 # latest ansible(>=4.x) with k8s module.
 RUN pip3 install requests google-auth kubernetes ansible yq
 RUN ansible-galaxy collection install cloud.common kubernetes.core
