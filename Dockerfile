@@ -22,6 +22,7 @@ RUN apt-get update; apt-get install -y \
                python3-pip python3-cryptography
 
 RUN mkdir -p /etc/bash_completion.d; kubectl completion bash > /etc/bash_completion.d/kubectl
+RUN echo "escape ^t^t" > /root/.screenrc
 
 # latest ansible(>=4.x) with k8s module.
 RUN pip3 install requests google-auth kubernetes ansible yq
