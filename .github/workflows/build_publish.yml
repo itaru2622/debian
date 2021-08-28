@@ -24,7 +24,7 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
   # tag as latest:
-  TAG_LATEST: buster
+  TAG_LATEST: bullseye
 
 jobs:
   build:
