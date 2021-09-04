@@ -27,3 +27,6 @@ RUN echo "escape ^t^t" > /root/.screenrc
 # latest ansible(>=4.x) with k8s module.
 RUN pip3 install requests google-auth kubernetes ansible yq
 RUN ansible-galaxy collection install cloud.common kubernetes.core
+
+# ansible needs 'python'
+RUN ln -sf /usr/bin/python3 /usr/bin/python
