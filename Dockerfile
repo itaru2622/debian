@@ -10,7 +10,7 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -; \
     curl -fsSL https://helm.baltorepo.com/organization/signing.asc | apt-key add -; \
     echo "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list ; \
     echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list ; \
-    echo "deb https://baltocdn.com/helm/stable/debian/ all main" > /etc/apt/sources.list.d/helm-stable-debian.list ; \
+    echo "deb https://baltocdn.com/helm/stable/debian/ all main" > /etc/apt/sources.list.d/helm-stable-debian.list ;
 
 RUN apt-get update; \
     apt-get install -y  docker-ce kubectl helm  bash-completion screen vim procps \
