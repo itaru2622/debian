@@ -29,5 +29,8 @@ RUN pip3 install requests google-auth kubernetes ansible yq ; \
     ln -sf /usr/bin/python3 /usr/bin/python
 
 # latest golang-go
-RUN curl -SL https://golang.org/dl/go1.17.3.linux-amd64.tar.gz | tar zxvf - -C /usr/local
-ENV PATH=${PATH}:/usr/local/go/bin
+ARG GO_VER=1.16.10
+RUN curl -SL https://golang.org/dl/go${GO_VER}.linux-amd64.tar.gz | tar zxvf - -C /usr/local
+ENV GOPATH=/root/go
+ENV PATH=${PATH}:/usr/local/go/bin:${GOPATH}/bin
+RUN go install golang.org/x/tools/cmd/goimports@latest
